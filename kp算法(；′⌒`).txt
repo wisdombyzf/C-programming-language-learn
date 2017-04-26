@@ -1,0 +1,141 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+int map[28][28];
+int check[28][28]; 
+struct my
+{
+	int x;
+	int y;
+	int value;
+}point;
+
+int main()
+{
+	
+	int n;
+	cin >> n;
+	while (1)
+	{
+		int sum=0;
+		memset(map, 999999, sizeof(map));
+		memset(check, 0, sizeof(check));
+		if (n == 0)
+		{
+			break;
+		}
+		n--;
+		for (int i = 0; i < n; i++)
+		{
+			char b;
+			int p;
+			cin >> b;
+			cin >> p;
+			for (int  j = 0; j < p; j++)
+			{
+				char aa;
+				int bb;
+				cin >> aa;
+				cin >> bb;
+				map[i][aa - 'A'] = bb;
+			}
+		}
+		
+		int time = n;
+		int check1[28] = { 0 };
+		
+		int k = 0;
+
+		while (time--)
+		{
+			int i = 0;
+			int j = 0;		
+			int check_x, check_y;
+			int min = 999999;
+			
+			int pp = 1;
+			for (i = 0; i <= n;i++)			//Ò»´Î
+			{
+				for (j=i;j<=n;j++)
+				{
+					if (map[i][j]<min)
+					{
+						if ((check1[i] == 0) && (check1[j] == 0))
+						{
+							pp = 0;
+							point.x = i;
+							point.y = j;
+							point.value = map[i][j];
+							min = map[i][j];			
+						}
+						else
+						{
+							if ((check1[i] == 0) || (check1[j] == 0))
+							{
+								pp = 1;
+								point.x = i;
+								point.y = j;
+								point.value = map[i][j];
+								min = map[i][j];
+								
+							}
+							else
+							{
+								for (int  y = 0; y < n; y++)
+								{
+									if ((check[y][i]==1)&&(check[y][j]!=1))
+									{								
+										for (int  z = 0; z < n; z++)
+										{
+											if (check[z][j]==1)
+											{
+												check_x = y;
+												check_y = z;
+												pp = 2;
+												point.x = i;
+												point.y = j;
+												point.value = map[i][j];
+												min = map[i][j];
+												break;
+											}
+
+										}
+										break;
+									}
+
+								}													
+							}
+						}
+					}						
+				}
+			}
+			if (pp == 0)
+			{
+				k++;
+			}
+			if (pp == 2)
+			{
+				for (int z = 0; z < n; z++)
+				{
+					if (check[check_x][z])
+					{
+						check[check_y][z] = 1;
+						check[check_x][z] = 0;
+					}
+				}
+			}
+			sum += point.value;
+			check1[point.x] = 1;
+			check1[point.y] = 1;
+			check[k][point.x] = 1;
+			
+			check[k][point.y] = 1;
+			map[point.x][point.y] = 999999;
+		}
+		cout << sum << endl;
+		cin >> n;
+	}
+	
+	system("pause");
+}

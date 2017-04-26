@@ -1,0 +1,49 @@
+#include<iostream>
+#include<cstdio>
+#include<algorithm>
+#include<string>
+#include<string.h>
+#include<map>
+#include<list>
+#include<vector>
+using namespace std;
+
+int main()
+{
+	int n;
+	while ((cin>>n)&&(n!=0))
+	{
+		map<string, int>a;
+		while (n--)
+		{
+			string color;
+			cin >> color;
+			map<string, int>::iterator it;
+			it=a.find(color);
+			if (it==a.end())
+			{
+				a[color] = 1;
+			}
+			else
+			{
+				int p = it->second;
+				it->second =++p;
+			}
+		}
+		map<string, int>::iterator f;
+		int num=0;
+		string jieguo;
+		for (f = a.begin(); f != a.end();f++)
+		{
+			if ((f->second)>num)
+			{
+				jieguo = f->first;
+				num = f->second;
+			}
+		}
+		cout << jieguo<<endl;
+		a.clear();
+	}
+	//system("pause");
+	return 0;
+}

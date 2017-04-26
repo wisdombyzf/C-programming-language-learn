@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+	while (1)
+	{
+		{
+			int month1 = 1, month2 = 1, month3, k = 2, x;
+			printf("有一对兔子，从出生后第3个月起每个月都生一对兔子，"
+				"小兔子长到第三个月后每个月又生一对兔子\n"
+				"假如兔子都不死，求每个月的兔子总数");
+			printf("请输入月份\n");
+			scanf_s("%d", &x);
+			if (int(x) == x&&x >= 0)
+			{
+				if (x == 1 || x == 2)
+				{
+					printf("兔子总数为%d\n", month1);
+				}
+				else
+				{
+					for (k = 2; k < x; k++)
+					{
+						month3 = month1 + month2;
+						month1 = month2;
+						month2 = month3;
+					}
+					printf("兔子总数为%d\n", month3);
+				}
+			}
+			else
+			{
+				printf("输入有误\n");
+			}
+			system("pause");
+			system("cls");
+		}
+	}
+	return 0;
+}

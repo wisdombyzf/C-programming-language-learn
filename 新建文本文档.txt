@@ -1,0 +1,158 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<malloc.h>
+
+struct student							//学生结构体
+{
+	//char name[10];
+	int age;
+	int num;
+	int grade;
+	struct student *next;
+};
+
+struct student *Link_1(struct student*head)
+{
+	struct student *s, *p,*x;
+	char choose='Y';
+	p = head;
+	while (choose=='Y')
+	{
+		char myname;
+		int myage;
+		int mynum;
+		int mygrade;
+		//printf("请输入名称");
+		//scanf_s("%c", &myname);									//待定
+		getchar();
+		printf("请输入年龄");
+		scanf_s("%d", &myage);
+		getchar();
+		printf("请输入学号");
+		scanf_s("%d", &mynum);
+		getchar();
+		printf("请输入分数");
+		scanf_s("%d", &mygrade);
+		getchar();
+		s = (struct student*)malloc(sizeof(struct student));
+		x = s;
+		//s->name = myname;								//待定
+		s->age = myage;
+		s->grade = mygrade;
+		s->num = mynum;
+		s = x;
+		if (!head)
+			head = s;
+		else
+		{
+			p->next = s;
+		}
+		p = s;
+		printf("是否继续Y/N");
+		scanf("%c", &choose);
+	}
+	p->next = NULL;
+	return x;
+}
+
+struct student* create()												//创建
+{
+	struct student*head = NULL, *p;
+	head = Link_1(head);
+	p = head;
+
+	FILE *write;
+	if ((write = fopen("zf.txt", "r+")) == NULL)			//文件是否存在
+	{
+		printf("不能打开数据文件。\n");
+		exit(1);
+	}
+	while (p)
+	{
+		fwrite(p, sizeof(struct student), 1,write);
+		p = p->next;
+	}
+	fclose(write);
+}
+
+void display()												//浏览
+{
+	FILE*read;
+	struct student*q;
+	struct student *head = NULL;
+	struct student *p1, *p2;
+	if ((read = fopen("zf.txt", "r+")) == NULL)			//文件是否存在
+	{
+		printf("不能打开数据文件。\n");
+		exit(1);
+	}
+
+	while (!feof(read))
+	{
+		q= (struct student*)malloc(sizeof(struct student));
+		fread(q, sizeof(struct student), 1, read);
+		printf("年龄%d\n学号%d\n成绩%d\n\n\n", q->age, q->num, q->grade);
+		q = q->next;
+	}
+}
+
+void shanchu()											//删除
+{
+
+}
+
+void help()							//帮助
+{
+
+}
+
+void interface()										//主界面
+{
+	int choose;
+
+	printf("学生管理系统\n");
+	printf("*************\n");
+	printf("*	1.创建	*\n"); 
+	printf("*	2.浏览	*\n");
+	printf("*	3.删除	*\n");
+	printf("*	4帮助	*\n");
+	printf("*************\n");
+	printf("请输入你的选择");
+	scanf("%d", &choose);
+	switch (choose)
+	{
+	case 1:
+		create();
+		break;
+	case 2:
+		display();
+		break;
+	case 3:
+		shanchu();
+		break;
+	case 4:
+		help();
+		break;
+	default:printf("输入错误");				//没用
+		system("pause");
+	break;
+	}
+	
+}
+
+int main()
+{
+	while (1)
+	{
+		interface();
+	}
+	int a, b, c;
+	char test;
+	FILE*open;
+	open = fopen("zf.txt", "rb");
+	fscanf(open, "%d%d%d",&a,&b,&c);
+	
+		printf("%d\n%d\n%d\n",a,b,c);
+		getchar();
+}
+

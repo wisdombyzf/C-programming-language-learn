@@ -1,0 +1,44 @@
+#include<stdio.h>  
+int main()
+{
+	char chioce;
+	float a, b, c;
+	printf("请选择\n1 加法器\n2 减法器\n3 乘法器\n4 除法器\n");
+	scanf_s("%c", &chioce);
+	switch (chioce)
+	{
+	case 1:printf("加法器\n请输入加数\n");
+		scanf_s("%f", &a);
+		printf("请输入另一个加数\n");
+		scanf_s("%f", &b);
+		c = a + b;
+		printf("结果是%f\n", c);
+		break;
+	case 3:printf("乘法器\n请输入乘数\n");
+		scanf_s("%f", &a);
+		printf("请输入另一个乘数\n");
+		scanf_s("%f", &b);
+		c = a*b;
+		printf("结果是%f\n", c);
+		break;
+	case 2:printf("减法器\n请输入被减数\n");
+		scanf_s("%f", &a);
+		printf("请输入另一个减数\n");
+		scanf_s("%f", &b);
+		c = a - b;
+		printf("结果是%f\n", c);
+		break;
+	case 4:printf("除法器\n请输入被除数\n");
+		scanf_s("%f", &a);
+		printf("请输入另一个除数\n");
+		scanf_s("%f", &b);
+		c = a / b;
+		printf("结果是%f\n", c);
+		break;
+	}
+		return 0;
+
+		
+	}
+
+

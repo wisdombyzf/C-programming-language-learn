@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+	int a = 0, b = 0, c = 0;
+	printf("请输入三角形各边\n");
+	scanf_s("%d%d%d", &a, &b, &c);
+	if (a + b <= c || b + c <= a || a + c <= b)
+	{
+		printf("这不是个三角形\n");
+	}
+	else if (a*a + b*b == c*c || a*a + c*c == b*b || b*b + c*c == a*a)
+	{
+		if (a == b || a == c || b == c)
+		{
+			printf("三角形是等腰直角三角形\n");//无用，数学渣渣
+		}
+		else printf("三角形是直角三角形\n");
+	}
+	else if (a == b || a == c || b == c)
+	{
+		if (a == b&&b == c)
+		{
+			printf("这是个等边三角形\n");
+		}
+		else printf("这是个等腰三角形\n");
+	}
+
+
+	system("pause");
+	return 0;
+}
+

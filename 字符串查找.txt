@@ -1,0 +1,50 @@
+#include<iostream>
+#include<string>
+#include<algorithm>
+#include<string.h>
+using namespace std;
+
+int main()
+{
+	int n,sum=0;
+	char a[11][11];
+	char str[1008];
+	cin >> n;
+	for (int i = 0; i <n; i++)
+	{
+		cin >> a[i];
+	}
+	cin >> str;
+	int l = strlen(str);
+	for (int i = 0; i <n; i++)
+	{
+		sum = 0;
+		int len = strlen(a[i]);
+		for (int  x= 0,y=0; x<l; x++)		//xÎªÔ­×Ö·û´®
+		{
+			char w = a[i][y];
+			char e = str[x];
+			if (a[i][y]==str[x])
+			{
+				if (y==(len-1))
+				{
+					y = 0;
+					sum++;
+				}
+				else
+				{
+					y++;
+				}
+			}
+			else
+			{
+				x = x - y;
+				y = 0;
+			}
+		}
+		cout << sum << endl;
+	}
+
+	system("pause");
+
+}

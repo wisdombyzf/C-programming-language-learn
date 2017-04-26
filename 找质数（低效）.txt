@@ -1,0 +1,30 @@
+#include<stdio.h>
+int fenjie( long a)
+{
+	long n, zf,b;
+	b = a;
+	for (zf=0; a != 1;zf++)
+	{
+		for (n = 2; (a%n) != 0 || a < n; n++)
+		{
+
+		}
+		a = a / n;
+	}
+	if (zf<2)
+	{
+		printf("%d\n",b);
+
+	}
+	return a;
+}
+
+int main()
+{
+		long x;
+		for ( x=2;;x++)
+		{
+			fenjie(x);
+		}
+
+}

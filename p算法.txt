@@ -1,0 +1,83 @@
+/*
+
+hdoj 1301 p算法（非典型）
+
+开始瞎搞，弄错了（变成了kp(自创)算法(；′⌒`)
+*/
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+int map[28][28];
+struct my
+{
+	int x;
+	int y;
+	int value;
+}point;
+
+int main()
+{
+
+	int n;
+	cin >> n;
+	while (1)
+	{
+		int check[28] = { 0 };
+		int sum = 0;
+		memset(map, 999999, sizeof(map));
+		if (n == 0)
+		{
+			break;
+		}
+		n--;
+		for (int i = 0; i < n; i++)
+		{
+			char b;
+			int p;
+			cin >> b;
+			cin >> p;
+			for (int j = 0; j < p; j++)
+			{
+				char aa;
+				int bb;
+				cin >> aa;
+				cin >> bb;
+				map[i][aa - 'A'] = bb;
+				map[aa - 'A'][i] = bb;
+			}
+		}
+
+		check[0] = 1;
+		for (int k = 0; k <n; k++)
+		{
+
+			int min = 999999;
+			for (int j = 0; j <= n; j++)
+			{
+				if ((check[j] == 1))
+				{
+					for (int z = 0; z <= n; z++)
+					{
+						if ((map[j][z]<min) && (check[z] != 1))
+						{
+							min = map[j][z];
+							point.x = j;
+							point.y = z;
+						}
+					}
+
+				}
+
+			}
+			sum += min;
+			map[point.x][point.y] = 999999;
+			map[point.y][point.x] = 999999;
+			check[point.y] = 1;
+		}
+		cout << sum << endl;
+		cin >> n;
+	}
+
+	system("pause");
+}

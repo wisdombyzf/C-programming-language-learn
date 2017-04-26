@@ -1,0 +1,17 @@
+#include<stdio.h>
+#define price 3.5
+int main()
+{
+	float Num = 0,
+		Total_price = 0;
+	printf("     总价计算\n请输入购买个数：");
+	scanf_s("%f", &Num);
+	{if (Num >= 10)
+		Total_price = Num*price*0.95;
+	if (0 <= Num < 10)
+		Total_price = Num*price;
+	printf("总价=%.3f\n", Total_price);
+	}
+	if (Num < 0)
+		printf("你是个逗逼");
+}

@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+	int a=1, line=1,n=1,k=9;
+	for (;line<=k; )											//为什么我用笔写不出来，非得用计算机调试。智商？
+	{
+		for (a=1;a<=n;a++)
+		{
+			printf("%d*%d=%d\t", a, line, a*line);
+		}
+		n++;
+		printf("\n");
+		line++;
+	}
+
+	return 0;
+}

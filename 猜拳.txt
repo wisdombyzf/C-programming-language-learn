@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+int main()
+{
+	int a = 1;
+	int random,result,score=0;
+	char choice;
+	while (a=1)
+	{
+		random=rand() % 3;
+		printf(
+			"           ************\n"
+			"           ****猜拳****\n"
+			"           ************\n\n\n"
+			"     A:剪刀\n\n"
+			"     B:石头\n\n"
+			"     C:布        分数:%d\n\n\n",score);
+		scanf_s("%c%*c",&choice);
+
+		if (choice<65||choice>68)
+		{
+			printf("有误");
+		}
+		else
+		{
+			choice = choice - 65;
+			result = random - choice;
+			if (result == 0)
+			{
+				printf("平局！\n");
+			}
+			if (result==-1||result==2)
+			{
+				printf("很遗憾!你输了\n");
+				score--;
+			}
+			if (result==-2||result==1)
+			{
+				printf("恭喜！你赢了\n");
+				score++;
+			}
+
+
+			//printf("result=%d\n", result);
+			//printf("random=%d\n", random);
+			//printf("choice=%d\n", choice);
+			system("pause");
+			system("cls");
+		}
+	}
+	return 0;
+}
